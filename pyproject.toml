@@ -5,6 +5,7 @@ description = "Compare different peak calling approaches"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "edgepython[all]>=0.2.5",
     "jupyter>=1.1.1",
     "muon>=0.1.7",
     "pandas>=2.3.3",
