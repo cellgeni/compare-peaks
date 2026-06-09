@@ -10,6 +10,7 @@ process SCANPY_AGGREGATE {
     tuple val(meta), path(h5ad)
     val func
     val by
+    val axis
 
     output:
     tuple val(meta), path("*.h5ad"), emit: "h5ad"
@@ -23,6 +24,7 @@ process SCANPY_AGGREGATE {
         ${h5ad} \
         --by ${by} \
         --func ${func} \
+        --axis ${axis} \
         --output ${prefix}_aggregated.h5ad \
         ${args}
     

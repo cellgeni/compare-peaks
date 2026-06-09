@@ -41,6 +41,9 @@ input:
 - name: by
   type: string
   description: Key(s) of the obs/var column(s) to group by. Multiple values can be space-separated.
+- name: axis
+  type: string
+  description: Axis on which to find the group-by column. One of 'obs' or 'var'.
 output:
 - - name: meta
     type: map

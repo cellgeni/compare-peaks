@@ -3,6 +3,7 @@
 import argparse
 import anndata
 import scanpy as sc
+import logging
 
 
 def parse_args():
@@ -30,6 +31,7 @@ def parse_args():
         "--axis",
         choices=["obs", "var"],
         default=None,
+        required=True,
         help="Axis on which to find the group-by column (default: inferred)",
     )
     parser.add_argument(
@@ -68,6 +70,23 @@ def main():
 
     by = args.by[0] if len(args.by) == 1 else args.by
     func = args.func[0] if len(args.func) == 1 else args.func
+
+    # drop NaN values from the group-by column(s) to avoid errors during aggregation
+    for col in args.by:
+        if args.axis == "obs":
+            na_entries = adata.obs[col].isna()
+            if na_entries.any():
+                logging.warning(
+                    f"Dropping {na_entries.sum()} entries with NaN values in obs['{col}']"
+                )
+            adata = adata[~adata.obs[col].isna()]
+        elif args.axis == "var":
+            na_entries = adata.var[col].isna()
+            if na_entries.any():
+                logging.warning(
+                    f"Dropping {na_entries.sum()} entries with NaN values in var['{col}']"
+                )
+            adata = adata[:, ~adata.var[col].isna()]
 
     result = sc.get.aggregate(
         adata,
