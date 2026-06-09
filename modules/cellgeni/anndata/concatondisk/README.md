@@ -51,6 +51,7 @@ Notes:
 
 - `--output` and the positional input paths are handled by the module wrapper and do not need to be provided in `ext.args`.
 - `--axis` is provided as a dedicated Nextflow input, not via `ext.args`.
+- `--keys` is automatically set to `meta.id` by the module wrapper. Override it via `ext.args` only if you need per-file keys different from the sample ID.
 
 #### Full `nextflow module run` example
 
@@ -59,7 +60,7 @@ nextflow module run cellgeni/anndata/concatondisk \
   --meta.id combined \
   --h5ad "/path/to/sample1.h5ad /path/to/sample2.h5ad /path/to/sample3.h5ad" \
   --axis obs \
-  -process.ext.args='--join outer --merge same --label batch --keys s1 s2 s3'
+  -process.ext.args='--join outer --merge same --label batch'
 ```
 
 ## Dependencies
