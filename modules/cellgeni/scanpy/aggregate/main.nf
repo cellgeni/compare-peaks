@@ -7,7 +7,7 @@ process SCANPY_AGGREGATE {
     container 'community.wave.seqera.io/library/scanpy:1.12.1--72e13de137afcded'
     
     input:
-    tuple val(meta), val(h5ad)
+    tuple val(meta), path(h5ad)
     val func
     val by
 
