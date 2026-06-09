@@ -1,0 +1,65 @@
+$schema: https://raw.githubusercontent.com/nextflow-io/schemas/refs/heads/main/module/v1/schema.json
+name: cellgeni/scanpy/aggregate
+version: 1.0.0
+description: Pseudobulk aggregation of an AnnData object using scanpy.get.aggregate.
+keywords:
+- pseudobulk
+- aggregation
+- single-cell
+- scRNA-seq
+- scanpy
+license: MIT
+tools:
+- scanpy:
+    description: Single-cell analysis toolkit
+    homepage: https://scanpy.readthedocs.io
+    documentation: https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html
+    license:
+    - BSD-3-Clause
+    identifier: biotools:scanpy
+- anndata:
+    description: Annotated data matrix for single-cell data.
+    homepage: https://anndata.readthedocs.io
+    documentation: https://anndata.readthedocs.io
+    license:
+    - BSD-3-Clause
+input:
+- - name: meta
+    type: map
+    description: |
+      Groovy Map containing sample information
+      e.g. [ id:'test' ]
+  - name: h5ad
+    type: file
+    description: AnnData object in h5ad format
+    pattern: '*.{h5ad}'
+    ontologies:
+    - edam: http://edamontology.org/format_3590
+- name: func
+  type: string
+  description: Aggregation function(s) to apply (e.g. 'sum', 'mean', 'var', 'count_nonzero', 'median'). Multiple values can be space-separated.
+- name: by
+  type: string
+  description: Key(s) of the obs/var column(s) to group by. Multiple values can be space-separated.
+output:
+- - name: meta
+    type: map
+    description: |
+      Groovy Map containing sample information
+      e.g. [ id:'test' ]
+  - name: '*.h5ad'
+    type: file
+    description: Aggregated AnnData object in h5ad format
+    pattern: '*.h5ad'
+    ontologies:
+    - edam: http://edamontology.org/format_3590
+- name: versions
+  type: file
+  description: YAML file containing software versions used
+  pattern: versions.yml
+  ontologies:
+  - edam: http://edamontology.org/format_3750
+authors:
+- '@claptar'
+maintainers:
+- '@claptar'
