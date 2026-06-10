@@ -51,7 +51,7 @@ Notes:
 
 - `--output` and the positional input paths are handled by the module wrapper and do not need to be provided in `ext.args`.
 - `--axis` is provided as a dedicated Nextflow input, not via `ext.args`.
-- `--keys` is automatically set to `meta.id` by the module wrapper. Override it via `ext.args` only if you need per-file keys different from the sample ID.
+- `--keys` is automatically set to `meta.id`
 
 #### Full `nextflow module run` example
 

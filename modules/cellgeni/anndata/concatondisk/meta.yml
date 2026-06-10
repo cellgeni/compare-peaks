@@ -1,6 +1,6 @@
 $schema: https://raw.githubusercontent.com/nextflow-io/schemas/refs/heads/main/module/v1/schema.json
 name: cellgeni/anndata/concatondisk
-version: 0.0.1
+version: 0.0.2
 description: Memory-efficient on-disk concatenation of AnnData objects using anndata.experimental.concat_on_disk.
 keywords:
 - concatenation

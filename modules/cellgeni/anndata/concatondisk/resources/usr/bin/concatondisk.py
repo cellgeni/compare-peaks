@@ -100,7 +100,11 @@ def main():
         merge=args.merge,
         uns_merge=args.uns_merge,
         label=args.label,
-        keys=None,  # handled via in_files mapping when --keys provided
+        keys=(
+            args.keys
+            if args.label is not None or args.index_unique is not None
+            else None
+        ),  # handled via in_files mapping when --keys provided
         index_unique=args.index_unique,
         fill_value=args.fill_value,
         pairwise=args.pairwise,

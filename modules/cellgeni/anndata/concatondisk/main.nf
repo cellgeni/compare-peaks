@@ -7,7 +7,7 @@ process ANNDATA_CONCATONDISK {
     container 'community.wave.seqera.io/library/pip_anndata:61345258b0b4dfd2'
 
     input:
-    tuple val(meta), path(h5ad)
+    tuple val(meta), path(h5ad, stageAs: "inputs/*/*")
     val axis
 
     output:
