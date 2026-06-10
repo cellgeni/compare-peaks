@@ -44,7 +44,7 @@ workflow {
 
 output {
     pseudobulk {
-        path { meta, file -> "pseudobulk/${meta.tag}"}
+        path { meta, file -> "pseudobulk/samples/${meta.tag}"}
     }
     combined_pb {
         path { meta, file -> "pseudobulk/${meta.tag}" }
