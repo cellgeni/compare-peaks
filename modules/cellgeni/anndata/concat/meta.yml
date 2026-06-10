@@ -1,0 +1,53 @@
+$schema: https://raw.githubusercontent.com/nextflow-io/schemas/refs/heads/main/module/v1/schema.json
+name: cellgeni/anndata/concat
+version: 0.0.1
+description: In-memory concatenation of AnnData objects using anndata.concat.
+keywords:
+- concatenation
+- single-cell
+- anndata
+license: MIT
+tools:
+- anndata:
+    description: Annotated data matrix for single-cell data.
+    homepage: https://anndata.readthedocs.io
+    documentation: https://anndata.readthedocs.io/en/stable/generated/anndata.concat.html
+    license:
+    - BSD-3-Clause
+input:
+- - name: meta
+    type: map
+    description: |
+      Groovy Map containing sample information
+      e.g. [ id:'test' ]
+  - name: h5ad
+    type: file
+    description: One or more AnnData objects in h5ad format to concatenate
+    pattern: '*.{h5ad}'
+    ontologies:
+    - edam: http://edamontology.org/format_3590
+- name: axis
+  type: string
+  description: Axis to concatenate along. One of 'obs' or 'var'.
+output:
+- - name: meta
+    type: map
+    description: |
+      Groovy Map containing sample information
+      e.g. [ id:'test' ]
+  - name: '*.h5ad'
+    type: file
+    description: Concatenated AnnData object in h5ad format
+    pattern: '*.h5ad'
+    ontologies:
+    - edam: http://edamontology.org/format_3590
+- name: versions
+  type: file
+  description: YAML file containing software versions used
+  pattern: versions.yml
+  ontologies:
+  - edam: http://edamontology.org/format_3750
+authors:
+- '@claptar'
+maintainers:
+- '@claptar'
